@@ -1,9 +1,54 @@
 import { Editor } from '@tiptap/react'
+import {
+  AlignCenter,
+  AlignJustify,
+  AlignLeft,
+  AlignLeftIcon,
+  AlignRight,
+  Bold,
+  Heading1,
+  Heading2,
+  Heading3,
+  Highlighter,
+  Italic,
+  Pilcrow,
+  Printer,
+  Strikethrough,
+} from 'lucide-react'
+import { useCallback } from 'react'
 
 export const MenuBar = ({ editor }: { editor: Editor }) => {
-  if (!editor) {
-    return null
-  }
+  const printContent = useCallback(() => {
+    // Create a hidden iframe
+    const iframe = document.createElement('iframe')
+    iframe.style.display = 'none'
+    document.body.appendChild(iframe)
+
+    // Write content to iframe
+    iframe.contentDocument?.write(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Print</title>
+        <style>
+          body { font-family: Arial, sans-serif; }
+        </style>
+      </head>
+      <body>${editor.getHTML()}</body>
+    </html>
+  `)
+    iframe.contentDocument?.close()
+
+    // Create, click, and remove a fake print button
+    const printButton = iframe.contentDocument?.createElement('button')
+    printButton?.setAttribute('onclick', 'window.print(); this.remove();')
+    printButton?.click()
+
+    // Clean up
+    setTimeout(() => document.body.removeChild(iframe), 100)
+  }, [editor])
+
+  if (!editor) return null
 
   return (
     <div className="rte-control-group">
@@ -16,7 +61,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
             editor.isActive('heading', { level: 1 }) ? 'is-active' : ''
           }
         >
-          H1
+          <Heading1 size="1rem" />
         </button>
         <button
           onClick={() =>
@@ -26,7 +71,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
             editor.isActive('heading', { level: 2 }) ? 'is-active' : ''
           }
         >
-          H2
+          <Heading2 size="1rem" />
         </button>
         <button
           onClick={() =>
@@ -36,43 +81,43 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
             editor.isActive('heading', { level: 3 }) ? 'is-active' : ''
           }
         >
-          H3
+          <Heading3 size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().setParagraph().run()}
           className={editor.isActive('paragraph') ? 'is-active' : ''}
         >
-          Paragraph
+          <Pilcrow size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive('bold') ? 'is-active' : ''}
         >
-          Bold
+          <Bold size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={editor.isActive('italic') ? 'is-active' : ''}
         >
-          Italic
+          <Italic size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
           className={editor.isActive('strike') ? 'is-active' : ''}
         >
-          Strike
+          <Strikethrough size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHighlight().run()}
           className={editor.isActive('highlight') ? 'is-active' : ''}
         >
-          Highlight
+          <Highlighter size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}
         >
-          Left
+          <AlignLeft size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('center').run()}
@@ -80,13 +125,13 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
             editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''
           }
         >
-          Center
+          <AlignCenter size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('right').run()}
           className={editor.isActive({ textAlign: 'right' }) ? 'is-active' : ''}
         >
-          Right
+          <AlignRight size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('justify').run()}
@@ -94,7 +139,10 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
             editor.isActive({ textAlign: 'justify' }) ? 'is-active' : ''
           }
         >
-          Justify
+          <AlignJustify size="1rem" />
+        </button>
+        <button onClick={printContent}>
+          <Printer size="1rem" />
         </button>
       </div>
     </div>

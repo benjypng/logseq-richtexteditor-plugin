@@ -2,7 +2,7 @@
   border: 1px solid #ccc;
   padding: 10px;
   min-height: 400px;
-  max-width: 83vh;
+  max-width: 100vh;
 }
 
 .ProseMirror:focus {
