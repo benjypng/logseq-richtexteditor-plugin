@@ -1,0 +1,33 @@
+.menu-bar {
+  padding: 5px;
+  background-color: #f1f3f5;
+  border-bottom: 1px solid #ccc;
+}
+
+.menu-bar button {
+  margin-right: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.menu-bar button:hover {
+  background-color: #e9ecef;
+}
+
+.menu-bar button.is-active {
+  background-color: #e9ecef;
+}
+
+.ProseMirror {
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-height: 400px;
+  width: 83vh;
+}
+
+.ProseMirror:focus {
+  outline: none;
+}

@@ -1,11 +1,11 @@
 {
-  "name": "<insert-plugin-name>",
-  "author": "",
-  "description": "",
+  "name": "logseq-richtexteditor-plugin",
+  "author": "benjypng",
+  "description": "Adds a rich-text editor to your graph.",
   "license": "MIT",
   "logseq": {
-    "id": "<insert-plugin-name>",
-    "title": "<insert-plugin-name>",
+    "id": "logseq-richtexteditor-plugin",
+    "title": "logseq-richtexteditor-plugin",
     "icon": "./icon.svg",
     "main": "dist/index.html"
   },
@@ -23,7 +23,7 @@
         "@semantic-release/github",
         {
           "assets": [
-            "<insert-plugin-name>.zip"
+            "logseq-richtexteditor-plugin.zip"
           ]
         }
       ]
@@ -31,6 +31,10 @@
   },
   "dependencies": {
     "@logseq/libs": "^0.0.17",
+    "@tiptap/extension-underline": "^2.5.9",
+    "@tiptap/react": "^2.5.9",
+    "@tiptap/starter-kit": "^2.5.9",
+    "lucide-react": "^0.427.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
