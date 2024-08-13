@@ -11,6 +11,15 @@ importers:
       '@logseq/libs':
         specifier: ^0.0.17
         version: 0.0.17
+      '@tiptap/core':
+        specifier: ^2.5.9
+        version: 2.5.9(@tiptap/pm@2.5.9)
+      '@tiptap/extension-highlight':
+        specifier: ^2.5.9
+        version: 2.5.9(@tiptap/core@2.5.9(@tiptap/pm@2.5.9))
+      '@tiptap/extension-text-align':
+        specifier: ^2.5.9
+        version: 2.5.9(@tiptap/core@2.5.9(@tiptap/pm@2.5.9))
       '@tiptap/extension-underline':
         specifier: ^2.5.9
         version: 2.5.9(@tiptap/core@2.5.9(@tiptap/pm@2.5.9))
@@ -437,6 +446,11 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.5.9
 
+  '@tiptap/extension-highlight@2.5.9':
+    resolution: {integrity: sha512-tRaSIIbCI7aBlvlmgUgBI5lVBqnMy49lc++UVAx1Pjey1j2KW031vUyvZfEwf6wk8Y7W3kVSkN0mW9IYCcOAOQ==}
+    peerDependencies:
+      '@tiptap/core': ^2.5.9
+
   '@tiptap/extension-history@2.5.9':
     resolution: {integrity: sha512-hGPtJgoZSwnVVqi/xipC2ET/9X2G2UI/Y+M3IYV1ZlM0tCYsv4spNi3uXlZqnXRwYcBXLk5u6e/dmsy5QFbL8g==}
     peerDependencies:
@@ -471,6 +485,11 @@ packages:
 
   '@tiptap/extension-strike@2.5.9':
     resolution: {integrity: sha512-QezkOZpczpl09S8lp5JL7sRkwREoPY16Y/lTvBcFKm3TZbVzYZZ/KwS0zpwK9HXTfXr8os4L9AGjQf0tHonX+w==}
+    peerDependencies:
+      '@tiptap/core': ^2.5.9
+
+  '@tiptap/extension-text-align@2.5.9':
+    resolution: {integrity: sha512-WYp9v7NEWddTt2Avbk3k/3g/fkL0hh4HEG97ubCPAj2aZzlZ85AEcRN8o4wLXJvZNj43nKQtZeel84INS5uzOg==}
     peerDependencies:
       '@tiptap/core': ^2.5.9
 
@@ -1541,6 +1560,10 @@ snapshots:
     dependencies:
       '@tiptap/core': 2.5.9(@tiptap/pm@2.5.9)
 
+  '@tiptap/extension-highlight@2.5.9(@tiptap/core@2.5.9(@tiptap/pm@2.5.9))':
+    dependencies:
+      '@tiptap/core': 2.5.9(@tiptap/pm@2.5.9)
+
   '@tiptap/extension-history@2.5.9(@tiptap/core@2.5.9(@tiptap/pm@2.5.9))(@tiptap/pm@2.5.9)':
     dependencies:
       '@tiptap/core': 2.5.9(@tiptap/pm@2.5.9)
@@ -1568,6 +1591,10 @@ snapshots:
       '@tiptap/core': 2.5.9(@tiptap/pm@2.5.9)
 
   '@tiptap/extension-strike@2.5.9(@tiptap/core@2.5.9(@tiptap/pm@2.5.9))':
+    dependencies:
+      '@tiptap/core': 2.5.9(@tiptap/pm@2.5.9)
+
+  '@tiptap/extension-text-align@2.5.9(@tiptap/core@2.5.9(@tiptap/pm@2.5.9))':
     dependencies:
       '@tiptap/core': 2.5.9(@tiptap/pm@2.5.9)
 
