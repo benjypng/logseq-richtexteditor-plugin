@@ -4,7 +4,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import Underline from '@tiptap/extension-underline'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useEffect, useState } from 'react'
+import { KeyboardEvent, useCallback, useEffect, useState } from 'react'
 
 import { MenuBar } from './components'
 
@@ -25,10 +25,10 @@ const RTE = ({ contentBlock }: { contentBlock: BlockEntity }) => {
       setEditorContent(editor.getHTML())
     },
   })
-  if (!editor) return null
 
   useEffect(() => {
     ;(async () => {
+      // Fix: For when renderer block loses focus
       const mainContainer = parent.document.getElementById('main-container')
       mainContainer?.click()
     })()
@@ -40,8 +40,18 @@ const RTE = ({ contentBlock }: { contentBlock: BlockEntity }) => {
     })()
   }, [editorContent])
 
+  const captureKeyboardEvent = useCallback(
+    (ev: KeyboardEvent<HTMLDivElement>) => {
+      // Fix for RTE capturing open brackets and tildes
+      ev.stopPropagation()
+    },
+    [editor],
+  )
+
+  if (!editor) return null
+
   return (
-    <div style={{ zIndex: 999 }}>
+    <div style={{ zIndex: 999 }} onKeyDown={captureKeyboardEvent}>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
     </div>

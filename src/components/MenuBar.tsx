@@ -4,7 +4,6 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
   if (!editor) {
     return null
   }
-  console.log(editor.isActive('heading'))
 
   return (
     <div className="rte-control-group">
