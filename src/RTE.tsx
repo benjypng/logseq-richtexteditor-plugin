@@ -1,14 +1,50 @@
 import { BlockEntity } from '@logseq/libs/dist/LSPlugin'
 import Highlight from '@tiptap/extension-highlight'
+import Table from '@tiptap/extension-table'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+import TableRow from '@tiptap/extension-table-row'
 import TextAlign from '@tiptap/extension-text-align'
 import Underline from '@tiptap/extension-underline'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { KeyboardEvent, useCallback, useEffect, useState } from 'react'
 
-import { MenuBar } from './components'
+import { MenuBar, TableMenuBar } from './components'
 
-const RTE = ({ contentBlock }: { contentBlock: BlockEntity }) => {
+const CustomTableCell = TableCell.extend({
+  addAttributes() {
+    return {
+      // extend the existing attributes …
+      ...this.parent?.(),
+
+      // and add a new one …
+      backgroundColor: {
+        default: null,
+        parseHTML: (element) => element.getAttribute('data-background-color'),
+        renderHTML: (attributes) => {
+          return {
+            'data-background-color': attributes.backgroundColor,
+            style: `background-color: ${attributes.backgroundColor}`,
+          }
+        },
+      },
+      border: {
+        default: '1',
+        renderHTML: (attributes) => ({
+          border: attributes.border,
+        }),
+      },
+    }
+  },
+})
+
+const RTE = ({
+  contentBlock,
+}: {
+  contentBlock: BlockEntity
+  rteId: string
+}) => {
   const [editorContent, setEditorContent] = useState(contentBlock.content)
 
   const editor = useEditor({
@@ -19,19 +55,17 @@ const RTE = ({ contentBlock }: { contentBlock: BlockEntity }) => {
       TextAlign.configure({
         types: ['heading', 'paragraph'],
       }),
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      CustomTableCell,
     ],
     content: editorContent,
     onUpdate: async ({ editor }) => {
       setEditorContent(editor.getHTML())
     },
-  })
-
-  useEffect(() => {
-    ;(async () => {
-      // Fix: For when renderer block loses focus
-      const mainContainer = parent.document.getElementById('main-container')
-      mainContainer?.click()
-    })()
   })
 
   useEffect(() => {
@@ -53,6 +87,7 @@ const RTE = ({ contentBlock }: { contentBlock: BlockEntity }) => {
   return (
     <div style={{ zIndex: 999 }} onKeyDown={captureKeyboardEvent}>
       <MenuBar editor={editor} />
+      <TableMenuBar editor={editor} />
       <EditorContent editor={editor} />
     </div>
   )

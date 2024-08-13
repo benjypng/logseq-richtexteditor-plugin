@@ -48,7 +48,7 @@ const main = async () => {
         const el = parent.document.getElementById(rteId)
         if (!el || !el.isConnected) return
         const root = createRoot(el)
-        root.render(<RTE contentBlock={contentBlock} />)
+        root.render(<RTE contentBlock={contentBlock} rteId={rteId} />)
       }, 0)
     },
   )

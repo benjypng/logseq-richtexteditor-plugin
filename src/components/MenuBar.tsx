@@ -3,7 +3,6 @@ import {
   AlignCenter,
   AlignJustify,
   AlignLeft,
-  AlignLeftIcon,
   AlignRight,
   Bold,
   Heading1,
@@ -19,12 +18,9 @@ import { useCallback } from 'react'
 
 export const MenuBar = ({ editor }: { editor: Editor }) => {
   const printContent = useCallback(() => {
-    // Create a hidden iframe
     const iframe = document.createElement('iframe')
     iframe.style.display = 'none'
     document.body.appendChild(iframe)
-
-    // Write content to iframe
     iframe.contentDocument?.write(`
     <!DOCTYPE html>
     <html>
@@ -32,20 +28,22 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
         <title>Print</title>
         <style>
           body { font-family: Arial, sans-serif; }
+          body mark, mark { background-color: yellow !important; color: black !important; }
+          table { table-layout: fixed; }
+          table td, table th { border: 1px solid #d4d4d4; padding: 0 10px; }
+          table th { background-color: #f5f5f5; font-weight: bold; text-align: left; }
         </style>
       </head>
       <body>${editor.getHTML()}</body>
     </html>
   `)
     iframe.contentDocument?.close()
-
-    // Create, click, and remove a fake print button
     const printButton = iframe.contentDocument?.createElement('button')
     printButton?.setAttribute('onclick', 'window.print(); this.remove();')
     printButton?.click()
-
-    // Clean up
-    setTimeout(() => document.body.removeChild(iframe), 100)
+    setTimeout(() => {
+      document.body.removeChild(iframe)
+    }, 100)
   }, [editor])
 
   if (!editor) return null
