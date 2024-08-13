@@ -1,7 +1,3 @@
-.tiptap {
-  outline: none;
-}
-
 .ProseMirror {
   border: 1px solid #ccc;
   padding: 10px;
@@ -42,4 +38,9 @@
 
 .rte-button-group button:hover {
   background-color: #d0d0d0;
+}
+
+.rte-button-group button.is-active {
+  background-color: #6200ee;
+  color: white;
 }
