@@ -1,11 +1,3 @@
-.ProseMirror {
-  border: 1px solid #ccc;
-  padding: 10px;
-  min-height: 400px;
-  min-width: 85vh;
-  background-color: #fff;
-}
-
 .rte-control-group {
   display: flex;
   justify-content: center;
@@ -51,21 +43,124 @@
   color: white;
 }
 
-.ProseMirror table {
-  table-layout: fixed;
+.ProseMirror.resize-cursor {
+  cursor: ew-resize;
 }
 
-.ProseMirror table td,
-.ProseMirror table th {
-  border: 0.1rem solid #d4d4d4;
+.tiptap {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  min-height: 400px;
+  min-width: 85vh;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.6;
 }
 
-.ProseMirror table th {
-  background-color: #f5f5f5;
-  font-weight: bold;
+.tiptap h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  color: #2c3e50;
+}
+
+.tiptap h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  color: #34495e;
+}
+
+.tiptap h3 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  color: #7f8c8d;
+}
+
+.tiptap p {
+  margin-bottom: 1em;
+}
+
+.tiptap ul,
+.tiptap ol {
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+.tiptap a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.tiptap a:hover {
+  text-decoration: underline;
+}
+
+.tiptap blockquote {
+  border-left: 4px solid #e74c3c;
+  padding-left: 1em;
+  margin-left: 0;
+  font-style: italic;
+  color: #7f8c8d;
+}
+
+.tiptap code {
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+}
+
+.tiptap pre {
+  background-color: #f0f0f0;
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.tiptap table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.tiptap th,
+.tiptap td {
+  border: 1px solid #ddd;
+  padding: 8px;
   text-align: left;
 }
 
-.ProseMirror.resize-cursor {
-  cursor: ew-resize;
+.tiptap th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.tiptap tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tiptap img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+}
+
+.tiptap hr {
+  border: none;
+  border-top: 2px solid #ecf0f1;
+  margin: 2em 0;
+}
+
+.tiptap *[style*='text-align: center'] {
+  text-align: center;
+}
+
+.tiptap *[style*='text-align: right'] {
+  text-align: right;
+}
+
+.tiptap *[style*='text-align: justify'] {
+  text-align: justify;
 }
