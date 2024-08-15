@@ -10,7 +10,7 @@ import {
 
 export const TableMenuBar = ({ editor }: { editor: Editor }) => {
   return (
-    <div className="rte-control-group">
+    <div className="rte-table-group">
       <div className="rte-button-group">
         <button
           onClick={() =>

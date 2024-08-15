@@ -5,38 +5,31 @@ import {
   AlignLeft,
   AlignRight,
   Bold,
+  Code,
   Heading1,
   Heading2,
   Heading3,
-  Highlighter,
   Italic,
-  Pilcrow,
+  List,
+  ListOrdered,
+  Minus,
   Printer,
+  Quote,
   Strikethrough,
+  Underline,
 } from 'lucide-react'
 import { useCallback } from 'react'
 
+import { generateHTMLForPrint } from '../services/generate-html-for-print'
+
 export const MenuBar = ({ editor }: { editor: Editor }) => {
   const printContent = useCallback(() => {
+    const html = editor.getHTML()
+    const htmlForPrint = generateHTMLForPrint(html)
     const iframe = document.createElement('iframe')
     iframe.style.display = 'none'
     document.body.appendChild(iframe)
-    iframe.contentDocument?.write(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Print</title>
-        <style>
-          body { font-family: Arial, sans-serif; }
-          body mark, mark { background-color: yellow !important; color: black !important; }
-          table { table-layout: fixed; }
-          table td, table th { border: 1px solid #d4d4d4; padding: 0 10px; }
-          table th { background-color: #f5f5f5; font-weight: bold; text-align: left; }
-        </style>
-      </head>
-      <body>${editor.getHTML()}</body>
-    </html>
-  `)
+    iframe.contentDocument?.write(htmlForPrint)
     iframe.contentDocument?.close()
     const printButton = iframe.contentDocument?.createElement('button')
     printButton?.setAttribute('onclick', 'window.print(); this.remove();')
@@ -82,12 +75,6 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           <Heading3 size="1rem" />
         </button>
         <button
-          onClick={() => editor.chain().focus().setParagraph().run()}
-          className={editor.isActive('paragraph') ? 'is-active' : ''}
-        >
-          <Pilcrow size="1rem" />
-        </button>
-        <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive('bold') ? 'is-active' : ''}
         >
@@ -106,10 +93,27 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           <Strikethrough size="1rem" />
         </button>
         <button
-          onClick={() => editor.chain().focus().toggleHighlight().run()}
-          className={editor.isActive('highlight') ? 'is-active' : ''}
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          className={editor.isActive('underline') ? 'is-active' : ''}
         >
-          <Highlighter size="1rem" />
+          <Underline size="1rem" />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          className={editor.isActive('blockQuote') ? 'is-active' : ''}
+        >
+          <Quote size="1rem" />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+          className={editor.isActive('codeBlock') ? 'is-active' : ''}
+        >
+          <Code size="1rem" />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+        >
+          <Minus size="1rem" />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
@@ -138,6 +142,18 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           }
         >
           <AlignJustify size="1rem" />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          className={editor.isActive('bulletList') ? 'is-active' : ''}
+        >
+          <List size="1rem" />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          className={editor.isActive('orderedList') ? 'is-active' : ''}
+        >
+          <ListOrdered size="1rem" />
         </button>
         <button onClick={printContent}>
           <Printer size="1rem" />

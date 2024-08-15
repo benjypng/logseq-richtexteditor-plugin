@@ -14,9 +14,9 @@ const main = async () => {
   handlePopup()
   logseq.provideStyle(css)
 
-  logseq.Editor.registerSlashCommand('Insert RTE', async (e) => {
+  logseq.Editor.registerSlashCommand('Insert rich text editor', async (e) => {
     await logseq.Editor.insertAtEditingCursor(`{{renderer :rte_${e.uuid}}}`)
-    await logseq.Editor.insertBlock(e.uuid, 'Start editing here', {
+    await logseq.Editor.insertBlock(e.uuid, '', {
       sibling: false,
       before: false,
     })
