@@ -25,7 +25,7 @@ const CustomTableCell = TableCell.extend({
   },
 })
 
-const RTE = ({
+export const RTE = ({
   contentBlock,
 }: {
   contentBlock: BlockEntity
@@ -54,9 +54,9 @@ const RTE = ({
   })
 
   useEffect(() => {
-    ;(async () => {
+    const updateBlock = async () =>
       await logseq.Editor.updateBlock(contentBlock.uuid, editorContent)
-    })()
+    updateBlock()
   }, [editorContent])
 
   const captureKeyboardEvent = useCallback(
@@ -77,5 +77,3 @@ const RTE = ({
     </div>
   )
 }
-
-export default RTE
