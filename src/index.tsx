@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client'
 
 import { handlePopup } from './handle-popup'
 import css from './index.css?raw'
-import { RTE } from './RTE'
+import RTE from './RTE'
 import { settings } from './settings'
 
 const main = async () => {
