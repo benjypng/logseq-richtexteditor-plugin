@@ -20,24 +20,13 @@ import {
 } from 'lucide-react'
 import { useCallback } from 'react'
 
-import { generateHTMLForPrint } from '../services/generate-html-for-print'
+import { printContent } from '../services/print-content'
 
 export const MenuBar = ({ editor }: { editor: Editor }) => {
-  const printContent = useCallback(() => {
-    const html = editor.getHTML()
-    const htmlForPrint = generateHTMLForPrint(html)
-    const iframe = document.createElement('iframe')
-    iframe.style.display = 'none'
-    document.body.appendChild(iframe)
-    iframe.contentDocument?.write(htmlForPrint)
-    iframe.contentDocument?.close()
-    const printButton = iframe.contentDocument?.createElement('button')
-    printButton?.setAttribute('onclick', 'window.print(); this.remove();')
-    printButton?.click()
-    setTimeout(() => {
-      document.body.removeChild(iframe)
-    }, 100)
-  }, [editor])
+  const handlePrint = useCallback(
+    () => printContent(editor.getHTML()),
+    [editor],
+  )
 
   if (!editor) return null
 
@@ -136,7 +125,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
       >
         <ListOrdered size="1rem" />
       </button>
-      <button onClick={printContent}>
+      <button onClick={handlePrint}>
         <Printer size="1rem" />
       </button>
     </div>
