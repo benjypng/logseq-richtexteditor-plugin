@@ -55,8 +55,8 @@
 
 .tiptap {
   border: 1px solid #ccc;
-  min-height: 400px;
-  min-width: 85vh;
+  min-height: 30rem;
+  min-width: 50rem;
   margin: 0 auto;
   padding: 0 0.5rem;
 }
