@@ -14,11 +14,11 @@
 }
 
 .white-theme .rte-control-group {
-  background-color: #f9f9f9;
+  background-color: #eee;
 }
 
 .dark-theme .rte-control-group {
-  background-color: #f0f0f0;
+  background-color: #a9a9a9;
   color: #fff;
 }
 
@@ -71,17 +71,23 @@
 
 .tiptap table {
   width: 100%;
-}
-
-.tiptap th,
-.tiptap td {
   border: 1px solid #ccc;
-  padding: 0 0.5rem;
 }
 
 .tiptap th {
-  background-color: #f2f2f2;
+  padding: 0 0.5rem;
+  border: 0;
   font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  font-size: 1.1rem;
+}
+
+.light-theme .tiptap th {
+  background-color: #f2f2f2;
+}
+
+.dark-theme .tiptap th {
+  background-color: #000;
 }
 
 .tiptap tr:nth-child(even) {

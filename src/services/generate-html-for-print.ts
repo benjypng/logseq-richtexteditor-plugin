@@ -1,72 +1,76 @@
 export const generateHTMLForPrint = (htmlStr: string) => {
   const styles = `
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-      color: #333;
-    }
-    .ProseMirror {
-      position: relative;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-      white-space: break-spaces;
-      -webkit-font-variant-ligatures: none;
-      font-variant-ligatures: none;
-      font-feature-settings: "liga" 0;
-    }
-    .ProseMirror pre {
-      white-space: pre-wrap;
-    }
-    .ProseMirror li {
-      position: relative;
-    }
-    blockquote {
-      border-left: 3px solid #0096bfab;
-      padding-left: 10px;
-      margin-left: 0;
-      font-style: italic;
-    }
-    table {
-      border-collapse: collapse;
-      margin: 0;
-      overflow: hidden;
-      table-layout: fixed;
-      width: 100%;
-    }
-    table td, table th {
-      border: 2px solid #ced4da;
-      box-sizing: border-box;
-      min-width: 1em;
-      padding: 3px 5px;
-      position: relative;
-      vertical-align: top;
-    }
-    table th {
-      background-color: #f1f3f5;
-      font-weight: bold;
-      text-align: left;
-    }
-    pre {
-      background-color: #f1f3f5;
-      border-radius: 3px;
-      padding: 10px;
-    }
-    code {
-      background-color: #f1f3f5;
-      border-radius: 3px;
-      padding: 2px 4px;
-    }
-    mark {
-      background-color: yellow
-      color: #000;
-      border-radius: 3px;
-      padding: 2px 4px;
-    }
-    hr {
-      border: none;
-      border-top: 2px solid #ced4da;
-      margin: 2em 0;
-    }
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin: 0;
+  padding: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  cursor: pointer;
+}
+
+button {
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+div[contenteditable] {
+  border: 1px solid #ccc;
+  min-height: 400px;
+  min-width: 85vh;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+p {
+  color: #000;
+}
+
+table {
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+th {
+  padding: 0.2rem 0.5rem;
+  border: 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+pre {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+blockquote {
+  border-left: 4px solid #ccc;
+  margin: 1rem 0;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #666;
+}
   `
 
   const html = `
