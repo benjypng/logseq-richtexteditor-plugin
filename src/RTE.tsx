@@ -70,9 +70,15 @@ const RTE = ({
   if (!editor) return null
 
   return (
-    <div style={{ zIndex: 999 }} onKeyDown={captureKeyboardEvent}>
-      <MenuBar editor={editor} />
-      <TableMenuBar editor={editor} />
+    <div
+      style={{ zIndex: 999 }}
+      className="rte-container"
+      onKeyDown={captureKeyboardEvent}
+    >
+      <div className="rte-control-group">
+        <MenuBar editor={editor} />
+        <TableMenuBar editor={editor} />
+      </div>
       <EditorContent editor={editor} />
     </div>
   )
