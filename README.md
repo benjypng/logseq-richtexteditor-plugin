@@ -4,6 +4,8 @@
 
 A simple rich text editor plugin for Logseq, enhancing editing capabilities across devices.
 
+![](/screenshots/demo.gif)
+
 ## Overview
 
 The Logseq Rich Text Editor Plugin seamlessly integrates a versatile rich text editor into your Logseq graph. It renders content in HTML, ensuring compatibility and visibility even on mobile devices without a dedicated renderer.
